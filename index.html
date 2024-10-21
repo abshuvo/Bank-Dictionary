@@ -17,7 +17,7 @@
     </section>
 
     <section id="word-list-section">
-        <h2>Words Starting with: <span id="selected-alphabet"></span></h2>
+        <h2>Words Starting with: <span id="selected-alphabet"gi></span></h2>
         <div id="word-list"></div>
     </section>
 
@@ -41,16 +41,24 @@
     </section>
 
     <section id="exam-section">
-        <button id="start-exam-btn">Start Exam</button>sadsaasdsad
+        <button id="start-exam1-btn">Start Exam 1</button>
+        <button id="start-exam2-btn">Start Exam 2</button>
     </section>
-
+    
     <section id="exam-question-section" class="hidden">
-        <h2>Exam Question</h2>
+        <h2>Exam 1 Question</h2>
         <div id="question"></div>
         <div id="options"></div>
         <button id="submit-answer">Submit Answer</button>
     </section>
-
+    
+    <section id="exam2-section" class="hidden">
+        <h2>Exam 2: Match Words with Definitions</h2>
+        <div id="word-container"></div>
+        <div id="definition-container"></div>
+        <button id="check-exam2">Check Answers</button>
+    </section>
+    
     <div id="result-modal" class="modal hidden">
         <div class="modal-content">
             <h2 id="result-message"></h2>

@@ -116,6 +116,13 @@ function showStudyMode() {
     document.getElementById('word-details-section').classList.remove('hidden');
 }
 
+function startExam1() {
+    document.getElementById('exam-question-section').classList.remove('hidden');
+    document.getElementById('start-exam1-btn').classList.add('hidden');
+    document.getElementById('start-exam2-btn').classList.add('hidden');
+    generateExamQuestion();
+}
+
 function startExam() {
     const examQuestionSection = document.getElementById('exam-question-section');
     examQuestionSection.classList.remove('hidden');
@@ -166,6 +173,102 @@ function closeModal() {
     document.getElementById('result-modal').classList.add('hidden');
     generateExamQuestion();
 }
+// Exam 2 functions
+function startExam2() {
+    document.getElementById('exam2-section').classList.remove('hidden');
+    document.getElementById('start-exam1-btn').classList.add('hidden');
+    document.getElementById('start-exam2-btn').classList.add('hidden');
+    generateExam2();
+}
+
+function generateExam2() {
+    const wordContainer = document.getElementById('word-container');
+    const definitionContainer = document.getElementById('definition-container');
+    
+    wordContainer.innerHTML = '';
+    definitionContainer.innerHTML = '';
+    
+    const words = Object.keys(dictionaryData).filter(key => key.length > 1);
+    const selectedWords = words.sort(() => 0.5 - Math.random()).slice(0, 4);
+    
+    selectedWords.forEach(word => {
+        const wordElement = createDraggableElement(word, 'word-item');
+        wordContainer.appendChild(wordElement);
+        
+        const definitionItem = document.createElement('div');
+        definitionItem.className = 'definition-item';
+        
+        const definitionText = document.createElement('div');
+        definitionText.className = 'definition-text';
+        definitionText.textContent = dictionaryData[word];
+        
+        const dropZone = document.createElement('div');
+        dropZone.className = 'drop-zone';
+        dropZone.textContent = 'Drop word here';
+        
+        definitionItem.appendChild(definitionText);
+        definitionItem.appendChild(dropZone);
+        definitionContainer.appendChild(definitionItem);
+    });
+}
+
+function createDraggableElement(content, className) {
+    const element = document.createElement('div');
+    element.textContent = content;
+    element.className = className;
+    element.draggable = true;
+    element.addEventListener('dragstart', drag);
+    return element;
+}
+
+function drag(event) {
+    event.dataTransfer.setData('text', event.target.textContent);
+}
+
+function allowDrop(event) {
+    event.preventDefault();
+}
+
+function drop(event) {
+    event.preventDefault();
+    const data = event.dataTransfer.getData('text');
+    const draggedElement = document.querySelector(`.word-item:not(.matched)`);
+    
+    if (draggedElement && draggedElement.textContent === data) {
+        event.target.textContent = data;
+        draggedElement.classList.add('matched');
+        event.target.classList.remove('highlight');
+        
+        if (document.querySelectorAll('.word-item.matched').length === 4) {
+            showExam2Result();
+        }
+    }
+}
+
+function showExam2Result() {
+    const resultModal = document.getElementById('result-modal');
+    const resultMessage = document.getElementById('result-message');
+    
+    resultMessage.textContent = 'Congratulations! You matched all words correctly!';
+    resultModal.classList.remove('hidden');
+}
+
+// Add these event listeners
+document.addEventListener('dragover', allowDrop);
+document.addEventListener('drop', drop);
+
+document.addEventListener('dragenter', function(event) {
+    if (event.target.classList.contains('drop-zone')) {
+        event.target.classList.add('highlight');
+    }
+});
+
+document.addEventListener('dragleave', function(event) {
+    if (event.target.classList.contains('drop-zone')) {
+        event.target.classList.remove('highlight');
+    }
+});
+
 
 // Initialize the page
 displayAlphabets();
@@ -175,5 +278,22 @@ document.getElementById('flashcard-mode-btn').addEventListener('click', showFlas
 document.getElementById('study-mode-btn').addEventListener('click', showStudyMode);
 document.getElementById('flashcard').addEventListener('click', flipCard);
 document.getElementById('next-card').addEventListener('click', nextCard);
-document.getElementById('start-exam-btn').addEventListener('click', startExam);
 document.getElementById('close-modal').addEventListener('click', closeModal);
+document.getElementById('start-exam1-btn').addEventListener('click', startExam1);
+document.getElementById('start-exam2-btn').addEventListener('click', startExam2);
+document.getElementById('check-exam2').addEventListener('click', showExam2Result);
+
+document.addEventListener('dragover', allowDrop);
+document.addEventListener('drop', drop);
+
+document.addEventListener('dragenter', function(event) {
+    if (event.target.classList.contains('definition-item')) {
+        event.target.classList.add('highlight');
+    }
+});
+
+document.addEventListener('dragleave', function(event) {
+    if (event.target.classList.contains('definition-item')) {
+        event.target.classList.remove('highlight');
+    }
+});

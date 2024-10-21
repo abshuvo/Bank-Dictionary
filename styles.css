@@ -61,7 +61,7 @@ button:hover {
     font-size: 24px;
     border: 1px solid #ddd;
     border-radius: 10px;
-    background-color: #f9f9f9;
+    background-color: #d33f3f;
     transition: transform 0.6s;
     padding: 20px;
     box-sizing: border-box;
@@ -94,7 +94,54 @@ button:hover {
     width: 80%;
     margin: 0.5em 0;
 }
+#word-container, #definition-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
 
+.word-item {
+    background-color: #d4edda;
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    cursor: move;
+}
+
+.definition-item {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.definition-text {
+    background-color: #cce5ff;
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #b8daff;
+    border-radius: 5px;
+}
+
+.drop-zone {
+    width: 150px;
+    height: 40px;
+    border: 2px dashed #007bff;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.drop-zone.highlight {
+    background-color: #e6f2ff;
+}
+
+.matched {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
 .modal {
     position: fixed;
     z-index: 1;
