@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Dictionary</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Interactive Dictionary</h1>
+    </header>
+    
+    <section id="alphabet-section">
+        <h2>Select an Alphabet</h2>
+        <div id="alphabet-list"></div>
+    </section>
+
+    <section id="word-list-section">
+        <h2>Words Starting with: <span id="selected-alphabet"></span></h2>
+        <div id="word-list"></div>
+    </section>
+
+    <section id="word-details-section">
+        <h2>Word Details</h2>
+        <div id="word-details"></div>
+    </section>
+
+    <section id="study-options-section">
+        <button id="flashcard-mode-btn">Flash Card Mode</button>
+        <button id="study-mode-btn">Study Mode</button>
+    </section>
+
+    <section id="flashcard-section" class="hidden">
+        <h2>Flashcard</h2>
+        <div id="flashcard">
+            <div id="flashcard-word"></div>
+            <div id="flashcard-definition" class="hidden"></div>
+        </div>
+        <button id="next-card">Next Card</button>
+    </section>
+
+    <section id="exam-section">
+        <button id="start-exam-btn">Start Exam</button>
+    </section>
+
+    <section id="exam-question-section" class="hidden">
+        <h2>Exam Question</h2>
+        <div id="question"></div>
+        <div id="options"></div>
+        <button id="submit-answer">Submit Answer</button>
+    </section>
+
+    <div id="result-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2 id="result-message"></h2>
+            <button id="close-modal">Close</button>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
