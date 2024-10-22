@@ -90,6 +90,48 @@ button:hover {
     align-items: center;
 }
 
+/* Updated styles for story section */
+#story-section {
+    padding: 2em;
+    margin: 1em 0;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#story-content {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #333;
+    min-height: 200px; /* Ensures consistent height even when empty */
+}
+
+#story-content p {
+    margin-bottom: 1em;
+    text-align: justify;
+}
+
+#story-title {
+    font-size: 1.5em;
+    color: #007bff;
+    margin-bottom: 1em;
+    font-weight: bold;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 0.5em;
+}
+
+/* Add smooth transition for content changes */
+#story-content {
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Highlight vocabulary words in the story */
+.vocab-word {
+    color: #007bff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
 #options button {
     width: 80%;
     margin: 0.5em 0;
